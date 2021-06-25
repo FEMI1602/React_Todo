@@ -6,6 +6,11 @@ import './App.css'
 function App() {
   const[todos,setTodos]=useState([])
   const[todo,setTodo]=useState('')
+  const deleteTodo = (id) => {
+    let newTodos = todos;
+    newTodos = newTodos.filter(todoItem => todoItem.id !== id);
+    setTodos(newTodos)
+}
   return (
     <div className="app">
       <div className="mainHeading">
@@ -18,6 +23,7 @@ function App() {
       <div className="input">
         <input value={todo} onChange={(e)=>setTodo(e.target.value)}type="text" placeholder="🖊️ Add item..." />
         <i onClick={()=>setTodos([...todos,{id: Date.now(),text:todo, status:false}])} className="fas fa-plus"></i>
+        
       </div>
       <div className="todos">
        { todos.map((obj)=>{
